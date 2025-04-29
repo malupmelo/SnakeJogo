@@ -6,10 +6,10 @@ Jogo da cobrinha desenvolvido em C para rodar no terminal, utilizando a bibliote
 
 ## 👥 Membros do grupo
 
-- Maria Luiza (@seuGitHub)
-- Nome do colega 1 (@github1)
-- Nome do colega 2 (@github2)
-- Nome do colega 3 (@github3)
+- Maria Luiza Pedrosa de Melo (malupedrosa.melo@gmail.com)
+- Ana Beatriz Astle (astlebia@gmail.com)
+- João Victor Astle (jvliv123@gmail.com)
+- Denise Tavares (@denisenascmento@gmail.com)
 
 ---
 
