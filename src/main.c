@@ -35,6 +35,25 @@ void desenhar_cobra(Posicao *cobra, int tamanho){
     screenUpdate();
 }
 
+void mover_cobra(Posicao *cobra, int tamanho, char direcao){
+    for (int i = 0; i < tamanho; i++){
+        cobra[i+1] = cobra[0];
+    }
+    if (direcao == 'w'){
+        cobra[0].y--;
+    }
+    else if (direcao == 's'){
+        cobra[0].y++;
+    }
+    else if (direcao == 'a'){
+        cobra[0].x--;
+    }
+    else if(direcao == 'd'){
+        cobra[0].x++;
+    }
+    screenUpdate();
+}
+
 
 int main(){
     screenInit(0);
