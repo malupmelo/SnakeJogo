@@ -24,7 +24,6 @@ void limpar(Posicao *cobra, int tamanho){
     screenSetColor(WHITE,BLACK);
     screenGotoxy(cobra[tamanho-1].x, cobra[tamanho-1].y);
     printf(" ");
-    screenUpdate();
 }
 
 void desenhar_cobra(Posicao *cobra, int tamanho){
@@ -62,19 +61,18 @@ int main(){
     cor_tela(BLACK);
 
     int tamanho = 5;
-    int tecla = 0;
+    int tecla = 100;
     Posicao *cobra = malloc(tamanho * sizeof(Posicao));
     for (int i = 0; i<tamanho;i++){
         cobra[i].x = 10-i;
         cobra[i].y = 10;
     }
     desenhar_cobra(cobra,tamanho);
-
     while (tecla != 10){
         if (keyhit()){
             tecla = readch();
         }
-        if(timerTimeOver()){
+        if(timerTimeOver() && tecla != 0){
             limpar(cobra,tamanho);
             mover_cobra(cobra,tamanho,tecla);
             desenhar_cobra(cobra,tamanho);
