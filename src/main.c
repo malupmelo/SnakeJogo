@@ -20,7 +20,7 @@ struct Posicao{
     int y;
 } typedef Posicao;
 
-void limpar(Posicao *cobra, int tamanho){
+void limpar(Posicao *cobra, int tamanho){ 
     screenSetColor(WHITE,BLACK);
     screenGotoxy(cobra[tamanho-1].x, cobra[tamanho-1].y);
     printf(" ");
@@ -61,7 +61,7 @@ int main(){
     cor_tela(BLACK);
 
     int tamanho = 5;
-    int tecla = 100;
+    int tecla = 0;
     Posicao *cobra = malloc(tamanho * sizeof(Posicao));
     for (int i = 0; i<tamanho;i++){
         cobra[i].x = 10-i;
