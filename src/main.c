@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "screen.h"
 #include "keyboard.h"
 #include "timer.h"
@@ -23,7 +24,6 @@ void limpar(Posicao *cobra, int tamanho){
     screenSetColor(WHITE,BLACK);
     screenGotoxy(cobra[tamanho-1].x, cobra[tamanho-1].y);
     printf(" ");
-    screenupdate();
 }
 
 void desenhar_cobra(Posicao *cobra, int tamanho){
@@ -35,23 +35,27 @@ void desenhar_cobra(Posicao *cobra, int tamanho){
     screenUpdate();
 }
 
-void mover_cobra(Posicao *cobra, int tamanho, char direcao){
+void mover_cobra(Posicao *cobra, int tamanho, int tecla){
     for (int i = 0; i < tamanho; i++){
-        cobra[i+1] = cobra[0];
+        cobra[i+1] = cobra[i];
     }
-    if (direcao == 'w'){
+    if (tecla == 119){
+        limpar(cobra,tamanho);
         cobra[0].y--;
     }
-    else if (direcao == 's'){
+    else if (tecla == 115){
+        limpar(cobra,tamanho);
         cobra[0].y++;
     }
-    else if (direcao == 'a'){
+    else if (tecla == 97){
+        limpar(cobra,tamanho);
         cobra[0].x--;
     }
-    else if(direcao == 'd'){
+    else if(tecla == 100){
+        limpar(cobra,tamanho);
         cobra[0].x++;
     }
-    screenUpdate();
+    desenhar_cobra(cobra, tamanho);
 }
 
 
@@ -60,7 +64,20 @@ int main(){
     keyboardInit();
     cor_tela(BLACK);
 
-    int tamanho = 1;
+    int tamanho = 5;
+    int tecla = 0;
+    Posicao *cobra = malloc(tamanho * sizeof(Posicao));
+    cobra[0].x = 10;
+    cobra[0].y = 10;
+
+    while (tecla != 10){
+        if (keyhit()){
+            tecla = readch();
+        }
+        mover_cobra(cobra, tamanho, tecla);
+    }
+    keyboardDestroy();
+    screenDestroy();
 
     return 0;
 }
