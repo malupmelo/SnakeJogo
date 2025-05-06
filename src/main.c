@@ -27,10 +27,15 @@ void limpar(Posicao *cobra, int tamanho){
 }
 
 void desenhar_cobra(Posicao *cobra, int tamanho){
-    screenSetColor(BLUE, BLACK);
+    screenSetColor(GREEN, BLUE);
     for (int i = 0; i < tamanho; i++ ){
         screenGotoxy(cobra[i].x, cobra[i].y);
-        printf("@");
+        if (i == 0){
+            printf("0");
+        }
+        else{
+            printf("o");
+        }
     }
     screenUpdate();
 }
