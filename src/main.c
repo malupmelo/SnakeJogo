@@ -31,7 +31,7 @@ int main(){
             limpar(cobra,tamanho);
             mover_cobra(cobra,tamanho,tecla);
             desenhar_cobra(cobra,tamanho);
-            if (colisao(cobra)){
+            if (colisao(cobra,tamanho)){
                 break;
             }
         }

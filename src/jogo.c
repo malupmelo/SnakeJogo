@@ -32,7 +32,7 @@ void pontuar(Posicao *comida, int *tamanho, Posicao **cobra){
         (*cobra)[*tamanho-1] = (*cobra)[*tamanho-2];
     }
 }
-int colisao(Posicao *cobra){
+int colisao(Posicao *cobra, int tamanho){
     if (cobra[0].x>= 1 && cobra[0].x <= 80 && cobra[0].y == 1){
         return 1;
     }
@@ -44,6 +44,11 @@ int colisao(Posicao *cobra){
     }
     if (cobra[0].y>= 1 && cobra[0].y <= 24 && cobra[0].x == 80){
         return 1;
+    }
+    for (int i = tamanho - 1; i > 0; i--){
+        if (cobra[0].x == cobra[i].x && cobra[0].y == cobra[i].y){
+            return 1;
+        }
     }
     return 0;
 }
