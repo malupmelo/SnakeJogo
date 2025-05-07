@@ -10,4 +10,6 @@ void gerar_comida(int posicaoComida_x, int posicaoComida_y);
 
 void pontuar(Posicao *comida, int *tamanho, Posicao **cobra);
 
+int colisao(Posicao *cobra);
+
 #endif
