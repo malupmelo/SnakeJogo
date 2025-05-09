@@ -1,5 +1,8 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "cobra.h"
-#include "screen.h"
+#include "../biblioteca/screen.h"
+
 
 void limpar(Posicao *cobra, int tamanho){ 
     screenSetColor(WHITE,BLACK);

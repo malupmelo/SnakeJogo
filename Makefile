@@ -1,30 +1,33 @@
 CC = gcc
-
-CFLAGS = -Wall -Wextra -Iinclude
-
-TARGET = jogo_cobra
+CFLAGS = -Wall -Wextra -Iinclude -Ibiblioteca
 
 SRC_DIR = src
-INCLUDE_DIR = include
 BUILD_DIR = build
+INCLUDE_DIR = include
+BIBLIOTECA_DIR = biblioteca
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
+LIB_SRCS = $(wildcard $(BIBLIOTECA_DIR)/*.c)
 
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
+SRC_OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
+LIB_OBJS = $(patsubst $(BIBLIOTECA_DIR)/%.c,$(BUILD_DIR)/%.o,$(LIB_SRCS))
+OBJS = $(SRC_OBJS) $(LIB_OBJS)
 
-all: $(BUILD_DIR) $(TARGET)
+EXEC = jogo_cobra
+
+$(EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $@
+
+$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/%.o: $(BIBLIOTECA_DIR)/%.c | $(BUILD_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILD_DIR):
 	mkdir -p $(BUILD_DIR)
 
-# Regra de ligação
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@ -lncurses 
-
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
 clean:
-	rm -rf $(BUILD_DIR) $(TARGET)
+	rm -rf $(BUILD_DIR) $(EXEC)
 
-.PHONY: all clean
+.PHONY: clean
