@@ -10,10 +10,7 @@
 
 
 void jogar() {
-    screenInit(0);
-    keyboardInit();
     timerInit(150);
-    
 
     cor_tela(BLACK);
 
@@ -57,8 +54,6 @@ void jogar() {
     printf("Pressione ENTER para sair...");
     screenUpdate();
     while (readch() != 10); 
-
+    cor_tela(BLACK);
     timerDestroy();
-    keyboardDestroy();
-    screenDestroy();
 }

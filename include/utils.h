@@ -1,7 +1,7 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include "screen.h"
+#include "../biblioteca/screen.h"
 #include "cobra.h" 
 
 void cor_tela(screenColor cor);

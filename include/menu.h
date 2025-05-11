@@ -3,5 +3,6 @@
 
 int menu_inicial();
 void mostrar_scores();
+int menu();
 
 #endif
