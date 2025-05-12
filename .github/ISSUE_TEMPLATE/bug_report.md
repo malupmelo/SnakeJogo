@@ -1,3 +1,11 @@
+---
+name: Relatório de Bug
+about: Use este template para reportar bugs no projeto
+title: "[BUG] "
+labels: bug
+assignees: ''
+---
+
 ## Título do Bug
 
 **Explicação do Bug**
