@@ -11,6 +11,8 @@
 int main(){
     screenInit(0);
     keyboardInit();
+    pedir_nome();
+    screenClear();
     cor_tela(BLACK);
    while(1) {
        int escolha_menu = menu();

@@ -8,7 +8,6 @@
 #include "utils.h"
 
 
-
 void jogar() {
     timerInit(150);
 
@@ -44,8 +43,9 @@ void jogar() {
     }
 
     free(cobra);
-
-    screenSetColor(WHITE, RED);
+    screenClear();
+    cor_tela(BLACK);
+    screenSetColor(GREEN, BLACK);
     screenGotoxy(30, 12);
     printf("Fim de jogo!");
     screenGotoxy(30, 13);

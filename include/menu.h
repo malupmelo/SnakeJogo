@@ -4,5 +4,6 @@
 int menu_inicial();
 void mostrar_scores();
 int menu();
+void pedir_nome();
 
 #endif

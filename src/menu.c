@@ -17,7 +17,7 @@ void mostrar_scores() {
 }
 
 int menu_inicial() {
-    int opcao = 0;
+    static int opcao = 0;
     int tecla = 0;
 
     while (1) {
@@ -35,15 +35,15 @@ int menu_inicial() {
         if (keyhit()) {
             tecla = readch();
         }
-        if (tecla == 'w' && opcao > 0) opcao--;
-        else if (tecla == 's' && opcao < 1) opcao++;
+        if (tecla == 'w' && opcao == 0) opcao = 0;
+        else if (tecla == 's' && opcao == 1) opcao = 1;
         if (opcao == 0 && tecla == 10) {
-            return 0;
-        }
-        else if (opcao == 1 && tecla == 10) {
-            mostrar_scores();
             return 1;
         }
+        if (opcao == 1 && tecla == 10) {
+            mostrar_scores();
+        }
+        return 0;
     }
 }
 int menu() {
@@ -70,6 +70,35 @@ int menu() {
         return 0;
     }
     return 2;
+}
+
+void pedir_nome() {
+    cor_tela(BLACK);
+    int letra = 0;
+    int tecla = 0;
+    char nome[15];
+    screenSetColor(GREEN,BLACK);
+    screenGotoxy(30,10);
+    printf("Digite seu nome: ");
+    int x = 47;
+    screenUpdate();
+    while (1) {
+        if (keyhit()) {
+            tecla = readch();
+            if (tecla == 10) {
+                break;
+            }
+            if (tecla >= 65 && tecla <= 122) {
+                nome[letra] = (char)tecla;
+                screenGotoxy(x,10);
+                printf("%c", nome[letra]);
+                letra++;
+                x++;
+                screenUpdate();
+            }
+        }
+    }
+    nome[letra] = '\0';
 }
 
 
