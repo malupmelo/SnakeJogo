@@ -9,26 +9,39 @@
 #include "utils.h"
 #include "highscore.h"
 
-int main(){
+int main() {
     screenInit(0);
     keyboardInit();
     char* nome = pedir_nome();
     screenClear();
     cor_tela(BLACK);
-   while(1) {
-       int escolha_menu = menu();
-       if (escolha_menu == 1) {
-           int pontuacao = jogar();
-           adicionar_pontuacao(nome, pontuacao);
-           tela_highscore();
-       }
-       if (escolha_menu == 0) {
-           break;
-       }
-   }
+
+    while (1) {
+        int escolha_menu = menu();
+
+        if (escolha_menu == 1) {
+            int modo = menu_modos(); 
+
+            if (modo == 1) { 
+                int pontuacao = jogar(); 
+                adicionar_pontuacao(nome, pontuacao);
+                tela_highscore();
+            }
+            else if (modo == 2) { // Modo Obstáculos
+                
+            }
+            else if (modo == 3) { // Modo Difícil
+                
+            }
+        }
+
+        if (escolha_menu == 0) {
+            tela_highscore();
+        }
+    }
+
     keyboardDestroy();
     screenDestroy();
     return 0;
 }
-
 
