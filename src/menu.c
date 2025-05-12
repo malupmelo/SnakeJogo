@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "menu.h"
 #include "../biblioteca/screen.h"
 #include "../biblioteca/keyboard.h"
@@ -35,7 +36,6 @@ int menu() {
 }
 
 
-#include "menu.h"
 
 int menu_modos() {
    
@@ -76,7 +76,7 @@ char* pedir_nome() {
     cor_tela(BLACK);
     int letra = 0;
     int tecla = 0;
-    char nome[15];
+    char* nome =  malloc(15*sizeof(char));
     screenSetColor(GREEN,BLACK);
     screenGotoxy(30,10);
     printf("Digite seu nome: ");

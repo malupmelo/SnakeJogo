@@ -39,7 +39,7 @@ int main() {
             tela_highscore();
         }
     }
-
+    free(nome);
     keyboardDestroy();
     screenDestroy();
     return 0;
