@@ -20,12 +20,14 @@ int main() {
         int escolha_menu = menu();
 
         if (escolha_menu == 1) {
+            screenClear();
             int modo = menu_modos(); 
 
             if (modo == 1) { 
                 int pontuacao = jogar(); 
                 adicionar_pontuacao(nome, pontuacao);
                 tela_highscore();
+                screenClear();
             }
             else if (modo == 2) { // Modo Obstáculos
                 
@@ -37,6 +39,9 @@ int main() {
 
         if (escolha_menu == 0) {
             tela_highscore();
+        }
+        if (escolha_menu == 2) {
+            break;
         }
     }
     free(nome);
