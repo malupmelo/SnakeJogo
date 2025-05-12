@@ -8,7 +8,8 @@
 #include "utils.h"
 
 
-void jogar() {
+
+int jogar() {
     timerInit(150);
 
     cor_tela(BLACK);
@@ -56,4 +57,5 @@ void jogar() {
     while (readch() != 10); 
     cor_tela(BLACK);
     timerDestroy();
+    return (tamanho - 1) * 10;
 }

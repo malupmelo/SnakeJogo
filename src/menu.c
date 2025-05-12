@@ -72,7 +72,7 @@ int menu() {
     return 2;
 }
 
-void pedir_nome() {
+char* pedir_nome() {
     cor_tela(BLACK);
     int letra = 0;
     int tecla = 0;
@@ -99,6 +99,7 @@ void pedir_nome() {
         }
     }
     nome[letra] = '\0';
+    return nome;
 }
 
 

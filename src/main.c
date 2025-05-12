@@ -7,17 +7,20 @@
 #include "jogo.h"
 #include "menu.h"
 #include "utils.h"
+#include "highscore.h"
 
 int main(){
     screenInit(0);
     keyboardInit();
-    pedir_nome();
+    char* nome = pedir_nome();
     screenClear();
     cor_tela(BLACK);
    while(1) {
        int escolha_menu = menu();
        if (escolha_menu == 1) {
-           jogar();
+           int pontuacao = jogar();
+           adicionar_pontuacao(nome, pontuacao);
+           tela_highscore();
        }
        if (escolha_menu == 0) {
            break;
