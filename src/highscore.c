@@ -2,7 +2,7 @@
 #include "../biblioteca/screen.h"
 #include "../biblioteca/keyboard.h"
 
-const char* nome_arquivo = "./Documents/Codigos/Faculdade/2Periodo/PIF/projeto_snake/SnakeJogo/highscores/highscores.txt";
+const char* nome_arquivo = "./highscores/highscores.txt";
 
 void adicionar_pontuacao(char* nome, int pontuacao) {
     FILE* arquivo = fopen(nome_arquivo, "a");
