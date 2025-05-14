@@ -44,9 +44,9 @@ int menu() {
     screenGotoxy(30,15);
     screenSetColor(GREEN, BLACK);
     printf(opcao == 0 ? "* START *" : "  START  ");
-    screenGotoxy(30,16);
-    printf(opcao == 1 ? "* HIGH SCORE *" : "  HIGH SCORE  ");
     screenGotoxy(30,17);
+    printf(opcao == 1 ? "* HIGH SCORE *" : "  HIGH SCORE  ");
+    screenGotoxy(30,19);
     printf(opcao == 2 ? "* SAIR *" : "  SAIR  ");
     if (opcao == 0 && tecla == 10) {
         return 1;

@@ -29,15 +29,16 @@ int main() {
                 tela_highscore();
                 screenClear();
             }
-            else if (modo == 2) { // Modo Obstáculos
+            else if (modo == 2) {
                 
             }
-            else if (modo == 3) { // Modo Difícil
+            else if (modo == 3) {
                 
             }
         }
 
         if (escolha_menu == 0) {
+            screenClear();
             tela_highscore();
         }
         if (escolha_menu == 2) {

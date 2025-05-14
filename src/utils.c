@@ -23,7 +23,7 @@ void gerar_comida(int posicaoComida_x, int posicaoComida_y){
     screenUpdate();
 }
 
-void pontuar(Posicao *comida, int *tamanho, Posicao **cobra){
+int pontuar(Posicao *comida, int *tamanho, Posicao **cobra){
     if (comida->x == (*cobra)[0].x && comida->y == (*cobra)[0].y){
         comida->x = rand() % (78 - 3 + 1) + 3;
         comida->y = rand() % (22 - 3 + 1) + 3;
@@ -31,7 +31,9 @@ void pontuar(Posicao *comida, int *tamanho, Posicao **cobra){
         (*tamanho)++;
         *cobra = realloc(*cobra, *tamanho * sizeof(Posicao));
         (*cobra)[*tamanho-1] = (*cobra)[*tamanho-2];
+        return 1;
     }
+    return 0;
 }
 int colisao(Posicao *cobra, int tamanho){
     if (cobra[0].x>= 1 && cobra[0].x <= 80 && cobra[0].y == 1){

@@ -10,7 +10,8 @@
 
 
 int jogar() {
-    timerInit(150);
+    int velocidade = 150;
+    timerInit(velocidade);
 
     cor_tela(BLACK);
 
@@ -33,7 +34,10 @@ int jogar() {
             tecla = readch();
         }
         if (timerTimeOver() && tecla != 0) {
-            pontuar(&comida, &tamanho, &cobra);
+            if(pontuar(&comida, &tamanho, &cobra)) {
+                velocidade -= 5;
+                timerUpdateTimer(velocidade);
+            };
             limpar(cobra, tamanho);
             mover_cobra(cobra, tamanho, tecla);
             desenhar_cobra(cobra, tamanho);
