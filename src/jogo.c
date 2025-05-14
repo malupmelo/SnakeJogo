@@ -35,7 +35,9 @@ int jogar() {
         }
         if (timerTimeOver() && tecla != 0) {
             if(pontuar(&comida, &tamanho, &cobra)) {
-                velocidade -= 5;
+                if (velocidade > 20) {
+                    velocidade -= 5;
+                }
                 timerUpdateTimer(velocidade);
             };
             limpar(cobra, tamanho);
