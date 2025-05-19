@@ -51,3 +51,7 @@ int main() {
     return 0;
 }
 
+//comidas especiais:
+//dobro da velocidade por um tempo; dobro dos pontos por um tempo; diminuir a cobra
+//modo teletransporte: cobra come e cabeça vai para onde o rabo estava
+

@@ -125,11 +125,11 @@ char* pedir_nome() {
 void menu_final(int pontuacao) {
     cor_tela(BLACK);
     screenSetColor(GREEN, BLACK);
-    screenGotoxy(30, 12);
+    screenGotoxy(32, 8);
     printf("GAME OVER");
     screenGotoxy(30, 13);
     printf("Pontuação: %d", (pontuacao - 1) * 10);
-    screenGotoxy(30, 15);
+    screenGotoxy(22, 15);
     printf("Pressione ENTER para sair...");
 }
 

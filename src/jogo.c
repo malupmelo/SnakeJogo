@@ -8,8 +8,6 @@
 #include "menu.h"
 #include "utils.h"
 
-
-
 int jogar() {
     int velocidade = 150;
     timerInit(velocidade);
@@ -51,7 +49,6 @@ int jogar() {
     }
 
     free(cobra);
-    screenClear();
     menu_final(tamanho);
     screenUpdate();
     while (readch() != 10); 
