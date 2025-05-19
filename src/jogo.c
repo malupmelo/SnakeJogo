@@ -5,6 +5,7 @@
 #include "../biblioteca/keyboard.h"
 #include "jogo.h"
 #include "cobra.h"
+#include "menu.h"
 #include "utils.h"
 
 
@@ -51,14 +52,7 @@ int jogar() {
 
     free(cobra);
     screenClear();
-    cor_tela(BLACK);
-    screenSetColor(GREEN, BLACK);
-    screenGotoxy(30, 12);
-    printf("Fim de jogo!");
-    screenGotoxy(30, 13);
-    printf("Pontuação: %d", (tamanho - 1) * 10);
-    screenGotoxy(30, 15);
-    printf("Pressione ENTER para sair...");
+    menu_final(tamanho);
     screenUpdate();
     while (readch() != 10); 
     cor_tela(BLACK);

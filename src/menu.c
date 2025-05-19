@@ -3,7 +3,6 @@
 #include "menu.h"
 #include "../biblioteca/screen.h"
 #include "../biblioteca/keyboard.h"
-#include "util.h"
 #include "../include/utils.h"
 
 
@@ -121,6 +120,17 @@ char* pedir_nome() {
     }
     nome[letra] = '\0';
     return nome;
+}
+
+void menu_final(int pontuacao) {
+    cor_tela(BLACK);
+    screenSetColor(GREEN, BLACK);
+    screenGotoxy(30, 12);
+    printf("GAME OVER");
+    screenGotoxy(30, 13);
+    printf("Pontuação: %d", (pontuacao - 1) * 10);
+    screenGotoxy(30, 15);
+    printf("Pressione ENTER para sair...");
 }
 
 
