@@ -70,7 +70,6 @@ int jogar_reverso() {
 
     int tamanho = 3;
     int tecla = 100;
-    int comeu_comida = 0;
 
     Posicao *cobra = malloc(tamanho * sizeof(Posicao));
     Posicao comida;
@@ -101,60 +100,39 @@ int jogar_reverso() {
             mostrar_pontuacao(tamanho-3);
             cauda_temp = cobra[tamanho-1];
 
-            if (cobra[0].x == comida.x && cobra[0].y == comida.y) {
-                comeu_comida = 1;
-                tamanho++;
-                cobra = realloc(cobra, tamanho * sizeof(Posicao));
-                cobra[tamanho-1] = cauda_temp;
+            if (pontuar(&comida, &tamanho, &cobra)) {
+                // Modo teletransporte: cobra se inverte
+                limpar(cobra, tamanho);
 
-                do {
-                    comida.x = rand() % (75 - 5 + 1) + 5;
-                    comida.y = rand() % (20 - 5 + 1) + 5;
-                } while (checar_comida(cobra, tamanho, comida.x, comida.y));
-
+                // Aumentar velocidade quando pontua
                 if (velocidade > 20) {
                     velocidade -= 5;
                 }
                 timerUpdateTimer(velocidade);
 
-                gerar_comida(comida.x, comida.y);
-            }
-            limpar(cobra, tamanho);
-
-            if (comeu_comida) {
-
+                // Modo teletransporte: inverter a cobra (cabeça vira cauda)
                 for (int i = tamanho-1; i > 0; i--) {
                     cobra[i] = cobra[i-1];
                 }
 
                 cobra[0] = cauda_temp;
 
+                // Determinar nova direção baseada na nova posição da cabeça em relação ao corpo
                 if (tamanho > 2) {
                     if (cauda_temp.x > cobra[1].x) tecla = 'd';
                     else if (cauda_temp.x < cobra[1].x) tecla = 'a';
                     else if (cauda_temp.y > cobra[1].y) tecla = 's';
                     else if (cauda_temp.y < cobra[1].y) tecla = 'w';
                 }
-
-                comeu_comida = 0;
             } else {
-                for (int i = tamanho-1; i > 0; i--) {
-                    cobra[i] = cobra[i-1];
-                }
-
-                if (tecla == 'w') {
-                    cobra[0].y--;
-                } else if (tecla == 's') {
-                    cobra[0].y++;
-                } else if (tecla == 'a') {
-                    cobra[0].x--;
-                } else if (tecla == 'd') {
-                    cobra[0].x++;
-                }
+                // Movimento normal da cobra
+                limpar(cobra, tamanho);
+                mover_cobra(cobra, tamanho, tecla);
             }
 
             desenhar_cobra(cobra, tamanho);
 
+            // Verificar colisão com as bordas
             if (cobra[0].x <= 1 || cobra[0].x >= 80 || cobra[0].y <= 1 || cobra[0].y >= 24) {
                 break;
             }
@@ -194,9 +172,6 @@ void iniciar() {
                 adicionar_pontuacao(nome, pontuacao);
                 tela_highscore();
                 screenClear();
-            }
-            else if (modo == 3) {
-
             }
         }
 
