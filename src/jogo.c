@@ -69,7 +69,7 @@ int jogar_reverso() {
     cor_tela(BLACK);
 
     int tamanho = 3;
-    int tecla = 100;
+    int tecla = 0;
 
     Posicao *cobra = malloc(tamanho * sizeof(Posicao));
     Posicao comida;
@@ -101,23 +101,19 @@ int jogar_reverso() {
             cauda_temp = cobra[tamanho-1];
 
             if (pontuar(&comida, &tamanho, &cobra)) {
-                // Modo teletransporte: cobra se inverte
                 limpar(cobra, tamanho);
 
-                // Aumentar velocidade quando pontua
                 if (velocidade > 20) {
                     velocidade -= 5;
                 }
                 timerUpdateTimer(velocidade);
 
-                // Modo teletransporte: inverter a cobra (cabeça vira cauda)
                 for (int i = tamanho-1; i > 0; i--) {
                     cobra[i] = cobra[i-1];
                 }
 
                 cobra[0] = cauda_temp;
 
-                // Determinar nova direção baseada na nova posição da cabeça em relação ao corpo
                 if (tamanho > 2) {
                     if (cauda_temp.x > cobra[1].x) tecla = 'd';
                     else if (cauda_temp.x < cobra[1].x) tecla = 'a';
@@ -125,14 +121,12 @@ int jogar_reverso() {
                     else if (cauda_temp.y < cobra[1].y) tecla = 'w';
                 }
             } else {
-                // Movimento normal da cobra
                 limpar(cobra, tamanho);
                 mover_cobra(cobra, tamanho, tecla);
             }
 
             desenhar_cobra(cobra, tamanho);
 
-            // Verificar colisão com as bordas
             if (cobra[0].x <= 1 || cobra[0].x >= 80 || cobra[0].y <= 1 || cobra[0].y >= 24) {
                 break;
             }
