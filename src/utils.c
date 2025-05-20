@@ -69,3 +69,11 @@ int checar_comida(Posicao *cobra, int tamanho, int comida_x, int comida_y) {
     }
     return 0;
 }
+
+void mostrar_pontuacao(int pontos) {
+    screenGotoxy(36,2);
+    screenSetColor(GREEN, BLACK);
+    printf("Pontos: ");
+    screenGotoxy(44,2);
+    printf("%d", pontos);
+}

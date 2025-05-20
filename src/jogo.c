@@ -34,6 +34,7 @@ int jogar() {
             tecla = readch();
         }
         if (timerTimeOver() && tecla != 0) {
+            mostrar_pontuacao(tamanho-1);
             if(pontuar(&comida, &tamanho, &cobra)) {
                 if (velocidade > 20) {
                     velocidade -= 5;
