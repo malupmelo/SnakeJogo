@@ -31,7 +31,10 @@ int jogar() {
 
     while (1) {
         if (keyhit()) {
-            tecla = readch();
+            int nova_tecla = readch();
+            if (nova_tecla == 'w' || nova_tecla == 'a' || nova_tecla == 's' || nova_tecla == 'd') {
+                tecla = nova_tecla;
+            }
         }
         if (timerTimeOver() && tecla != 0) {
             mostrar_pontuacao(tamanho-1);
@@ -59,7 +62,7 @@ int jogar() {
     return (tamanho - 1) * 10;
 }
 
-int jogar_teletransporte() {
+int jogar_reverso() {
     int velocidade = 150;
     timerInit(velocidade);
 
@@ -89,19 +92,13 @@ int jogar_teletransporte() {
     while (1) {
         if (keyhit()) {
             int nova_tecla = readch();
-            if (nova_tecla == 10) {
-                tecla = 10;
-                break;
-            } else if (nova_tecla == 'q') {
-                tecla = 10;
-                break;
-            } else if (nova_tecla == 'w' || nova_tecla == 's' ||
-                      nova_tecla == 'a' || nova_tecla == 'd') {
+            if (nova_tecla == 'w' || nova_tecla == 'a' || nova_tecla == 's' || nova_tecla == 'd') {
                 tecla = nova_tecla;
             }
         }
 
-        if (timerTimeOver()) {
+        if (timerTimeOver() && tecla != 0) {
+            mostrar_pontuacao(tamanho-3);
             cauda_temp = cobra[tamanho-1];
 
             if (cobra[0].x == comida.x && cobra[0].y == comida.y) {
@@ -170,7 +167,7 @@ int jogar_teletransporte() {
     while (readch() != 10);
     cor_tela(BLACK);
     timerDestroy();
-    return (tamanho - 1) * 10;
+    return (tamanho - 3) * 10;
 }
 
 void iniciar() {
@@ -193,7 +190,7 @@ void iniciar() {
                 screenClear();
             }
             else if (modo == 2) {
-                int pontuacao = jogar_teletransporte();
+                int pontuacao = jogar_reverso();
                 adicionar_pontuacao(nome, pontuacao);
                 tela_highscore();
                 screenClear();
