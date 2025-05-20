@@ -12,4 +12,6 @@ void desenhar_cobra(Posicao *cobra, int tamanho);
 
 void mover_cobra(Posicao *cobra, int tamanho, int tecla);
 
+void cobra_reversa();
+
 #endif

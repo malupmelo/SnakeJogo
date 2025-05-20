@@ -29,10 +29,13 @@ int main() {
                 screenClear();
             }
             else if (modo == 2) {
-                
+                int pontuacao = jogar_teletransporte();
+                adicionar_pontuacao(nome, pontuacao);
+                tela_highscore();
+                screenClear();
             }
             else if (modo == 3) {
-                
+
             }
         }
 
@@ -50,7 +53,4 @@ int main() {
     return 0;
 }
 
-//comidas especiais:
-//dobro da velocidade por um tempo; dobro dos pontos por um tempo; diminuir a cobra
-//modo teletransporte: cobra come e cabeça vai para onde o rabo estava
 

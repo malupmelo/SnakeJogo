@@ -73,20 +73,18 @@ int menu_modos() {
         printf(opcao == 0 ? "* BÁSICO *"     : "  BÁSICO  ");
 
         screenGotoxy(30, 12);
-        printf(opcao == 1 ? "* OBSTÁCULOS *" : "  OBSTÁCULOS  ");
+        printf(opcao == 1 ? "* REVERSO *" : "  REVERSO  ");
 
-        screenGotoxy(30, 14);
-        printf(opcao == 2 ? "* DIFÍCIL *"    : "  DIFÍCIL  ");
 
         if (keyhit()) {
             tecla = readch();
 
-            if (tecla == 'w' && opcao > 0) { 
-                opcao--;
-            } else if (tecla == 's' && opcao < 2) { 
-                opcao++;
-            } else if (tecla == 10) { 
-                return opcao + 1; 
+            if (tecla == 'w' && opcao == 1) {
+                opcao=0;
+            } else if (tecla == 's' && opcao == 0) {
+                opcao=1;
+            } else if (tecla == 10) {
+                return opcao + 1;
             }
         }
     }
