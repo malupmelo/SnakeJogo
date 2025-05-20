@@ -9,6 +9,7 @@
 #include "utils.h"
 
 int jogar() {
+    char* nome = pedir_nome();
     int velocidade = 150;
     timerInit(velocidade);
 
@@ -49,6 +50,7 @@ int jogar() {
     }
 
     free(cobra);
+    free(nome);
     menu_final(tamanho);
     screenUpdate();
     while (readch() != 10); 

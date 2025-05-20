@@ -7,12 +7,10 @@
 #define MAX_HIGHSCORES 5
 const char* nome_arquivo = "./highscores/highscores.txt";
 
-// Adiciona uma nova pontuação, mantendo apenas os 5 melhores
 void adicionar_pontuacao(char* nome, int pontuacao) {
     Jogador highscores[MAX_HIGHSCORES + 1];
     int total = 0;
 
-    // Lê as pontuações existentes
     FILE* arquivo = fopen(nome_arquivo, "r");
     if (arquivo != NULL) {
         while (total < MAX_HIGHSCORES &&
@@ -22,12 +20,10 @@ void adicionar_pontuacao(char* nome, int pontuacao) {
         fclose(arquivo);
     }
 
-    // Adiciona a nova pontuação
     strcpy(highscores[total].nome, nome);
     highscores[total].pontuacao = pontuacao;
     total++;
 
-    // Ordena as pontuações (maior para menor)
     for (int i = 0; i < total - 1; i++) {
         for (int j = 0; j < total - i - 1; j++) {
             if (highscores[j].pontuacao < highscores[j + 1].pontuacao) {
@@ -38,7 +34,6 @@ void adicionar_pontuacao(char* nome, int pontuacao) {
         }
     }
 
-    // Salva as melhores pontuações
     arquivo = fopen(nome_arquivo, "w");
     if (arquivo != NULL) {
         int limite = (total < MAX_HIGHSCORES) ? total : MAX_HIGHSCORES;
@@ -49,12 +44,10 @@ void adicionar_pontuacao(char* nome, int pontuacao) {
     }
 }
 
-// Verifica se uma pontuação entra no top 5
 int checar_top5(int pontuacao_nova) {
     Jogador highscores[MAX_HIGHSCORES];
     int total = 0;
 
-    // Lê as pontuações existentes
     FILE* arquivo = fopen(nome_arquivo, "r");
     if (arquivo != NULL) {
         while (total < MAX_HIGHSCORES &&
@@ -64,12 +57,10 @@ int checar_top5(int pontuacao_nova) {
         fclose(arquivo);
     }
 
-    // Se tiver menos de 5 pontuações, é um novo highscore
     if (total < MAX_HIGHSCORES) {
         return 1;
     }
 
-    // Encontra a menor pontuação
     int menor_pontuacao = highscores[0].pontuacao;
     for (int i = 1; i < total; i++) {
         if (highscores[i].pontuacao < menor_pontuacao) {
@@ -77,16 +68,13 @@ int checar_top5(int pontuacao_nova) {
         }
     }
 
-    // Verifica se a nova pontuação é maior que a menor
     return pontuacao_nova > menor_pontuacao;
 }
 
-// Mostra a tela de highscores
 void tela_highscore() {
     Jogador highscores[MAX_HIGHSCORES];
     int total = 0;
 
-    // Lê as pontuações existentes
     FILE* arquivo = fopen(nome_arquivo, "r");
     if (arquivo != NULL) {
         while (total < MAX_HIGHSCORES &&
@@ -96,7 +84,6 @@ void tela_highscore() {
         fclose(arquivo);
     }
 
-    // Ordena as pontuações (maior para menor)
     for (int i = 0; i < total - 1; i++) {
         for (int j = 0; j < total - i - 1; j++) {
             if (highscores[j].pontuacao < highscores[j + 1].pontuacao) {
@@ -107,7 +94,6 @@ void tela_highscore() {
         }
     }
 
-    // Mostra as pontuações
     screenSetColor(GREEN, BLACK);
     screenGotoxy(31, 2);
     printf("HIGHSCORE");
@@ -118,6 +104,6 @@ void tela_highscore() {
     }
 
     screenUpdate();
-    while (readch() != 10); // Espera por Enter
+    while (readch() != 10);
     screenClear();
 }

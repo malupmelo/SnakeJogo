@@ -13,7 +13,6 @@ int main() {
     screenInit(0);
     keyboardInit();
     char* nome = pedir_nome();
-    screenClear();
     cor_tela(BLACK);
 
     while (1) {
